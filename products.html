@@ -14,42 +14,33 @@
             <a href="products.html">Products</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <div id="cart-icon">🛒 Cart (<span id="cart-count">0</span>)</div>
         </nav>
     </header>
     <main>
-        <section id="products-list">
+        <section id="products-list" class="fade-in">
             <h2>Available Varieties</h2>
-            <ul>
-                <li><strong>Plain Pan:</strong> Fresh betel leaves - ₹20 per pack</li>
-                <li><strong>Rose Masala Pan:</strong> Infused with rose flavor - ₹50 per pack</li>
-                <li><strong>Chocolate Masala Pan:</strong> Sweet chocolate twist - ₹60 per pack</li>
-                <li><strong>Mint Masala Pan:</strong> Refreshing mint - ₹55 per pack</li>
-                <li><strong>Spicy Masala Pan:</strong> With a kick of spices - ₹65 per pack</li>
-            </ul>
+            <div id="products-container">
+                <!-- Products loaded dynamically -->
+            </div>
         </section>
-        <section id="order-form">
-            <h2>Place Your Order</h2>
-            <form id="orderForm">
-                <label for="product">Select Product:</label>
-                <select id="product" required>
-                    <option value="">Choose...</option>
-                    <option value="Plain Pan - ₹20">Plain Pan - ₹20</option>
-                    <option value="Rose Masala Pan - ₹50">Rose Masala Pan - ₹50</option>
-                    <option value="Chocolate Masala Pan - ₹60">Chocolate Masala Pan - ₹60</option>
-                    <option value="Mint Masala Pan - ₹55">Mint Masala Pan - ₹55</option>
-                    <option value="Spicy Masala Pan - ₹65">Spicy Masala Pan - ₹65</option>
-                </select><br><br>
-                
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" min="1" required><br><br>
-                
-                <label for="phone">Your Phone Number (for order confirmation):</label>
-                <input type="tel" id="phone" placeholder="e.g., 9876543210" required><br><br>
-                
-                <button type="submit">Order via WhatsApp</button>
-            </form>
+        <section id="cart-section" class="fade-in">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <p>Total: ₹<span id="cart-total">0</span></p>
+            <button id="checkout-btn">Checkout via WhatsApp</button>
         </section>
     </main>
+    <!-- Modal for order confirmation -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Confirm Your Order</h3>
+            <label for="modal-phone">Your Mobile Number:</label>
+            <input type="tel" id="modal-phone" placeholder="Enter 10-digit number" maxlength="10" required>
+            <button id="confirm-order">Submit Order</button>
+        </div>
+    </div>
     <footer>
         <p>&copy; 2023 Nilam Pan Shop.</p>
     </footer>
