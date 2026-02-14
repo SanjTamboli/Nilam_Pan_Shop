@@ -1,10 +1,8 @@
 // Product data (dynamic - easy to edit)
 const products = [
-    { name: 'Plain Pan', price: 20, img: 'Fresh pan leaves.jpg' },
+    { name: 'Plain Pan', price: 20, img: 'pan 2.jpg' },
     { name: 'Rose Masala Pan', price: 50, img: 'masala pan.jpg' },
     { name: 'Chocolate Masala Pan', price: 60, img: 'chocolate.jpg' },
-    { name: 'Mint Masala Pan', price: 55, img: 'mint-masala.jpg' },
-    { name: 'Spicy Masala Pan', price: 65, img: 'spicy-masala.jpg' }
 ];
 
 // Load cart from localStorage
@@ -57,7 +55,6 @@ function updateCartDisplay() {
 // Checkout and modal logic
 document.addEventListener('DOMContentLoaded', () => {
     displayProducts('products-container'); // For products page
-    // Featured products removed, so no call here
     
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
@@ -67,40 +64,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Cart is empty!');
                 return;
             }
-            const modal = document.getElementById('order-modal');
-            if (modal) modal.style.display = 'block';  // Prevent error if modal missing
-        });
-    }
-    
-    // Modal close
-    const modal = document.getElementById('order-modal');
-    const closeBtn = document.querySelector('.close');
-    if (closeBtn) {
-        closeBtn.onclick = () => modal.style.display = 'none';
-    }
-    if (modal) {
-        window.onclick = (event) => {
-            if (event.target === modal) modal.style.display = 'none';
-        };
-    }
-    
-    // Confirm order
-    const confirmBtn = document.getElementById('confirm-order');
-    if (confirmBtn) {
-        confirmBtn.addEventListener('click', () => {
-            const phone = document.getElementById('modal-phone').value.replace(/\s/g, '');
+            
+            // Read name and phone from page fields
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.replace(/\s/g, '');
+            
+            // Validation
+            if (!name) {
+                alert('Please enter your name.');
+                return;
+            }
             if (!/^\d{10}$/.test(phone)) {
                 alert('Please enter a valid 10-digit mobile number.');
                 return;
             }
-            const orderDetails = cart.map(item => `${item.quantity}x ${item.name}`).join(', ');
-            const message = `Order: ${orderDetails}, Total: ₹${cart.reduce((sum, item) => sum + (item.price * item.quantity), 0)}, Phone: ${phone}`;
-            const whatsappURL = `https://wa.me/7507426786?text=${encodeURIComponent(message)}`;  // Replace with your number
+            
+            // Formatted order details
+            const orderDetails = cart.map(item => `${item.quantity}x ${item.name} - ₹${item.price * item.quantity}`).join('\n');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Structured WhatsApp message with your desired content
+            const message = '🧾✨ Order Confirmed – Nilam Pan Sho 👑🍃\n\n' +
+                            'Thank you for your royal order! 🎉\n' +
+                            `*Customer Name:* ${name}\n` +
+                            `*Mobile Number:* ${phone}\n\n` +
+                            '📦 Order Details:\n' +
+                            `*Order Details:*\n${orderDetails}\n\n` +
+                            `*Total Bill:* ₹${total}\n\n` +
+                            '💰 Total Amount: ₹' + total + '\n\n' +
+                            'Your freshly handcrafted paan is being prepared with premium ingredients. 🍃✨\n\n' +
+                            '📍 We’ll notify you once it’s ready!\n' +
+                            'Thank you for choosing Nilam Pan Sho – Where Every Bite Feels Royal 👑';
+            
+            const whatsappURL = `https://wa.me/7507426786?text=${encodeURIComponent(message)}`;  // Your number
             window.open(whatsappURL, '_blank');
+            
+            // Reset cart
             cart = [];
             localStorage.removeItem('cart');
             updateCartDisplay();
-            if (modal) modal.style.display = 'none';
             alert('Order submitted!');
         });
     }
