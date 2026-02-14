@@ -1,6 +1,6 @@
 // Product data (dynamic - easy to edit)
 const products = [
-    { name: 'Plain Pan', price: 20, img: 'pan 2.jpg' },
+    { name: 'Plain Pan', price: 20, img: 'pan.jpg' },
     { name: 'Rose Masala Pan', price: 50, img: 'masala pan.jpg' },
     { name: 'Chocolate Masala Pan', price: 60, img: 'chocolate.jpg' },
 ];
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             
             // Structured WhatsApp message with your desired content
-            const message = '🧾✨ Order Confirmed – Nilam Pan Sho 👑🍃\n\n' +
+            const message = '🧾✨ Order Confirmed – Nilam Pan Shop 👑🍃\n\n' +
                             'Thank you for your royal order! 🎉\n' +
                             `*Customer Name:* ${name}\n` +
                             `*Mobile Number:* ${phone}\n\n` +
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             '💰 Total Amount: ₹' + total + '\n\n' +
                             'Your freshly handcrafted paan is being prepared with premium ingredients. 🍃✨\n\n' +
                             '📍 We’ll notify you once it’s ready!\n' +
-                            'Thank you for choosing Nilam Pan Sho – Where Every Bite Feels Royal 👑';
+                            'Thank you for choosing Nilam Pan Shop – Where Every Bite Feels Royal 👑';
             
             const whatsappURL = `https://wa.me/7507426786?text=${encodeURIComponent(message)}`;  // Your number
             window.open(whatsappURL, '_blank');
