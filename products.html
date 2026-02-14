@@ -28,19 +28,14 @@
             <h2>Your Cart</h2>
             <div id="cart-items"></div>
             <p>Total: ₹<span id="cart-total">0</span></p>
+            
+            <!-- Integrated Name and Phone Fields -->
+            <p>Enter your name: <input type="text" id="customer-name" placeholder="Your full name" style="border: 1px solid #ccc; padding: 0.5rem; margin-left: 0.5rem;"></p>
+            <p>Enter your mobile number: <input type="tel" id="customer-phone" placeholder="10-digit number" maxlength="10" style="border: 1px solid #ccc; padding: 0.5rem; margin-left: 0.5rem;"></p>
+            
             <button id="checkout-btn">Checkout via WhatsApp</button>
         </section>
     </main>
-    <!-- Modal for order confirmation -->
-    <div id="order-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Confirm Your Order</h3>
-            <label for="modal-phone">Your Mobile Number:</label>
-            <input type="tel" id="modal-phone" placeholder="Enter 10-digit number" maxlength="10" required>
-            <button id="confirm-order">Submit Order</button>
-        </div>
-    </div>
     <footer>
         <p>&copy; 2023 Nilam Pan Shop.</p>
     </footer>
